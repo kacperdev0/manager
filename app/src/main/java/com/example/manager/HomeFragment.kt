@@ -6,8 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.ScrollView
 import android.widget.TextView
-import java.io.File
+import com.example.manager.handlingClasses.FileOperation
+import com.example.manager.handlingClasses.SingleEntry
+import com.example.manager.handlingClasses.SingleMood
+import java.util.Calendar
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,8 +46,22 @@ class HomeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
+
+    fun showEntries(view: View, allEntries: List<SingleEntry>) {
+        val entriesLayout = view.findViewById<LinearLayout>(R.id.EntriesLayout)
+        entriesLayout.removeAllViews()
+        for (entry in allEntries) {
+            val textView = TextView(context).apply {
+                text = entry.getEntryData()
+            }
+            entriesLayout.addView(textView)
+        }
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        var fo = FileOperation("EntriesData")
+        fo.saveSingleEntry(Calendar.getInstance().time, SingleMood(1, "git"))
 
         context?.openFileOutput("DaysData", Context.MODE_PRIVATE).use {
             it?.write("test".toByteArray())
@@ -53,7 +73,12 @@ class HomeFragment : Fragment() {
             Text = it?.readText().toString()
         }
 
-        view.findViewById<TextView>(R.id.testText)?.text = Text
+        showEntries(view, fo.getAllEntries())
+
+        view.findViewById<Button>(R.id.addEntry).setOnClickListener {
+            fo.saveSingleEntry(Calendar.getInstance().time, SingleMood(1, "CHILL"))
+            showEntries(view, fo.getAllEntries())
+        }
     }
 
     companion object {
