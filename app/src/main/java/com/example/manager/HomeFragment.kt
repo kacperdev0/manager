@@ -10,6 +10,8 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.example.manager.handlingClasses.FileOperation
 import com.example.manager.handlingClasses.SingleEntry
 import com.example.manager.handlingClasses.SingleMood
@@ -76,8 +78,7 @@ class HomeFragment : Fragment() {
         showEntries(view, fo.getAllEntries())
 
         view.findViewById<Button>(R.id.addEntry).setOnClickListener {
-            fo.saveSingleEntry(Calendar.getInstance().time, SingleMood(1, "CHILL"))
-            showEntries(view, fo.getAllEntries())
+            findNavController().navigate(R.id.action_HomeFragment_to_AddEntityFragment)
         }
     }
 

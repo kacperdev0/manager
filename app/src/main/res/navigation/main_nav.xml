@@ -9,7 +9,11 @@
         android:id="@+id/HomeFragment"
         android:name="com.example.manager.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_HomeFragment_to_AddEntityFragment"
+            app:destination="@id/AddEntityFragment" />
+    </fragment>
     <fragment
         android:id="@+id/SettingsFragment"
         android:name="com.example.manager.SettingsFragment"
@@ -20,4 +24,9 @@
         android:name="com.example.manager.StatsFragment"
         android:label="fragment_stats"
         tools:layout="@layout/fragment_stats" />
+    <fragment
+        android:id="@+id/AddEntityFragment"
+        android:name="com.example.manager.AddEntityFragment"
+        android:label="fragment_add_entity"
+        tools:layout="@layout/fragment_add_entity" />
 </navigation>
