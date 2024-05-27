@@ -18,7 +18,11 @@
         android:id="@+id/SettingsFragment"
         android:name="com.example.manager.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_SettingsFragment_to_moodEditionFragment"
+            app:destination="@id/MoodEditionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/StatsFragment"
         android:name="com.example.manager.StatsFragment"
@@ -29,4 +33,9 @@
         android:name="com.example.manager.AddEntityFragment"
         android:label="fragment_add_entity"
         tools:layout="@layout/fragment_add_entity" />
+    <fragment
+        android:id="@+id/MoodEditionFragment"
+        android:name="com.example.manager.MoodEditionFragment"
+        android:label="fragment_mood_edition"
+        tools:layout="@layout/fragment_mood_edition" />
 </navigation>
