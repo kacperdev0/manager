@@ -1,11 +1,13 @@
 package com.example.manager.handlingClasses.moodsControl
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.example.manager.R
 import com.example.manager.handlingClasses.SingleMood
 
@@ -21,6 +23,21 @@ class MoodsSelectList(context: Context, data: MutableList<SingleMood>) :
 
         val textName = view.findViewById<TextView>(R.id.name)
         val textType = view.findViewById<TextView>(R.id.type)
+
+        if (position == selectedPostion) {
+            view.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary))
+            textName.setTextColor(Color.WHITE)
+            textType.setTextColor(Color.WHITE)
+        } else {
+            view.setBackgroundColor(Color.TRANSPARENT)
+            textName.setTextColor(Color.BLACK)
+            textType.setTextColor(Color.BLACK)
+        }
+
+        view.setOnClickListener {
+            selectedPostion = position
+            notifyDataSetChanged()
+        }
 
         textName.text = data?.name
         textType.text = data?.id.toString()
