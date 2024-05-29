@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="Home" android:id="@+id/HomeFragment" android:icon="@drawable/baseline_home" android:iconTint="@color/contrastColorPrimary"/>
-    <item android:title="Settings" android:id="@+id/SettingsFragment" android:icon="@drawable/baseline_settings" android:iconTint="@color/contrastColorPrimary" />
-    <item android:title="Stats" android:id="@+id/StatsFragment" android:icon="@drawable/baseline_query_stats" android:iconTint="@color/contrastColorPrimary" />
+    <item android:title="Home" android:id="@+id/home_fragment_button" android:icon="@drawable/baseline_home" android:iconTint="@color/contrastColorPrimary"/>
+    <item android:title="Settings" android:id="@+id/settings_fragment_button" android:icon="@drawable/baseline_settings" android:iconTint="@color/contrastColorPrimary" />
+    <item android:title="Stats" android:id="@+id/stats_fragment_button" android:icon="@drawable/baseline_query_stats" android:iconTint="@color/contrastColorPrimary" />
 </menu>

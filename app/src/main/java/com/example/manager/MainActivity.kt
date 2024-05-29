@@ -5,6 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -19,7 +20,27 @@ class MainActivity : AppCompatActivity() {
         val navHost = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHost.navController
 
-        mainNavBottom.setupWithNavController(navController)
+        mainNavBottom.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.home_fragment_button -> {
+                    navController.navigate(R.id.HomeFragment)
+                    true
+                }
+                R.id.settings_fragment_button -> {
+                    navController.navigate(R.id.SettingsFragment)
+                    true
+                }
+                R.id.stats_fragment_button -> {
+                    navController.navigate(R.id.StatsFragment)
+                    true
+                }
+
+                else -> {
+                    navController.navigate(R.id.HomeFragment)
+                    true
+                }
+            }
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
