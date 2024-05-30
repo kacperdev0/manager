@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddMoodFragment">
+    tools:context=".SettingsFragments.AddMoodFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,10 +20,11 @@
             android:id="@+id/commit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:backgroundTint="@color/colorPrimary"
             android:text="Commit"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:layout_editor_absoluteY="3dp" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/Title"
@@ -40,10 +41,11 @@
             android:id="@+id/cancel_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:backgroundTint="@color/colorPrimary"
             android:text="Cancel"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="3dp" />
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout

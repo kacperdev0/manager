@@ -43,7 +43,9 @@ class AddEntityFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val spinner = view.findViewById<Spinner>(R.id.moodSpinner)
-        val allMoods = AllMoods("MoodsData")
+        val allMoods = AllMoods("MoodsData", view.context)
+        allMoods.loadData()
+
         val adapter: ArrayAdapter<Any?> = ArrayAdapter<Any?>(requireContext(), android.R.layout.simple_spinner_item,
             allMoods.arrayOfMoods()
         )

@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/SettingsFragment"
-        android:name="com.example.manager.SettingsFragment"
+        android:name="com.example.manager.SettingsFragments.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
         <action
@@ -35,7 +35,7 @@
         tools:layout="@layout/fragment_add_entity" />
     <fragment
         android:id="@+id/MoodEditionFragment"
-        android:name="com.example.manager.MoodEditionFragment"
+        android:name="com.example.manager.SettingsFragments.MoodEditionFragment"
         android:label="fragment_mood_edition"
         tools:layout="@layout/fragment_mood_edition" >
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/AddMoodFragment"
-        android:name="com.example.manager.AddMoodFragment"
+        android:name="com.example.manager.SettingsFragments.AddMoodFragment"
         android:label="fragment_add_mood"
         tools:layout="@layout/fragment_add_mood" />
 </navigation>
