@@ -22,16 +22,16 @@ class MoodsSelectList(context: Context, data: MutableList<SingleMood>) :
         val data = getItem(position)
 
         val textName = view.findViewById<TextView>(R.id.name)
-        val textType = view.findViewById<TextView>(R.id.type)
+        val textVibe = view.findViewById<TextView>(R.id.vibe)
 
         if (position == selectedPostion) {
             view.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary))
             textName.setTextColor(Color.WHITE)
-            textType.setTextColor(Color.WHITE)
+            textVibe.setTextColor(Color.WHITE)
         } else {
             view.setBackgroundColor(Color.TRANSPARENT)
             textName.setTextColor(Color.BLACK)
-            textType.setTextColor(Color.BLACK)
+            textVibe.setTextColor(Color.BLACK)
         }
 
         view.setOnClickListener {
@@ -40,7 +40,7 @@ class MoodsSelectList(context: Context, data: MutableList<SingleMood>) :
         }
 
         textName.text = data?.name
-        textType.text = data?.id.toString()
+        textVibe.text = "${data?.vibe.toString()}%"
 
         return view
     }

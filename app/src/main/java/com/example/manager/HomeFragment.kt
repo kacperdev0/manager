@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.manager.handlingClasses.FileOperation
@@ -63,6 +64,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         var fo = FileOperation("EntriesData")
+
         fo.saveSingleEntry(Calendar.getInstance().time, SingleMood(1, "git"))
 
         context?.openFileOutput("DaysData", Context.MODE_PRIVATE).use {
