@@ -37,6 +37,7 @@ class AllMoods(val dir: String, val context: Context) {
             saveData()
         }
     }
+
     fun saveData() {
         try {
             this.context.openFileOutput(dir + ".json", Context.MODE_PRIVATE).use { output ->
@@ -47,7 +48,16 @@ class AllMoods(val dir: String, val context: Context) {
         }
     }
 
+    fun addMood(mood: SingleMood) {
+        moods.add(mood)
+        saveData()
+    }
+
     fun arrayOfMoods(): Array<String> {
         return moods.map{it.name}.toTypedArray()
+    }
+
+    fun nextId(): Int {
+        return moods.last().id + 1
     }
 }
