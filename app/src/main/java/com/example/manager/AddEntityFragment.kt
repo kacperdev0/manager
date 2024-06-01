@@ -51,6 +51,7 @@ class AddEntityFragment : Fragment() {
         val adapter: ArrayAdapter<Any?> = ArrayAdapter<Any?>(requireContext(), android.R.layout.simple_spinner_item,
             allMoods.arrayOfMoods()
         )
+        
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.setAdapter(adapter)
 

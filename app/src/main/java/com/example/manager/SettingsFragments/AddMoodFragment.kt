@@ -32,23 +32,33 @@ class AddMoodFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_mood, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val nameInput = view.findViewById<TextInputEditText>(R.id.mood_name_input)
+        val vibeSlider = view.findViewById<SeekBar>(R.id.vibe_seekbar)
+
         val am = AllMoods("MoodsData", view.context)
         am.loadData()
+
+        val indexToEdit = arguments?.getInt("ARG_Index") ?: -1
+        if (indexToEdit != -1) {
+            val moodToEdit: SingleMood = am.getSinlgeMood(indexToEdit)
+            nameInput.setText(moodToEdit.name)
+            vibeSlider.progress = moodToEdit.vibe
+        }
 
         view.findViewById<Button>(R.id.cancel_button).setOnClickListener {
             findNavController().navigate(R.id.MoodEditionFragment)
         }
 
         view.findViewById<Button>(R.id.commit_button).setOnClickListener {
-            val name = view.findViewById<TextInputEditText>(R.id.mood_name_input).text.toString()
-            val vibe = view.findViewById<SeekBar>(R.id.vibe_seekbar).progress
-            am.addMood(SingleMood(am.nextId(), name, vibe))
+            val name = nameInput.text.toString()
+            val vibe = vibeSlider.progress
+            am.addMood(SingleMood(am.nextId(), name, vibe), indexToEdit)
 
             findNavController().navigate(R.id.SettingsFragment)
         }

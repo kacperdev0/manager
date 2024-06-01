@@ -48,8 +48,13 @@ class AllMoods(val dir: String, val context: Context) {
         }
     }
 
-    fun addMood(mood: SingleMood) {
-        moods.add(mood)
+    fun addMood(mood: SingleMood, index: Int) {
+        if (index == -1) {
+            moods.add(mood)
+        } else {
+            moods[index] = mood
+        }
+
         saveData()
     }
 
@@ -62,6 +67,10 @@ class AllMoods(val dir: String, val context: Context) {
 
     fun arrayOfMoods(): Array<String> {
         return moods.map{it.name}.toTypedArray()
+    }
+
+    fun getSinlgeMood(index: Int): SingleMood {
+        return moods[index]
     }
 
     fun nextId(): Int {

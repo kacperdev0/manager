@@ -46,5 +46,9 @@
         android:id="@+id/AddMoodFragment"
         android:name="com.example.manager.SettingsFragments.AddMoodFragment"
         android:label="fragment_add_mood"
-        tools:layout="@layout/fragment_add_mood" />
+        tools:layout="@layout/fragment_add_mood" >
+        <argument
+            android:name="ARG_Index"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -43,6 +43,8 @@ class MoodEditionFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_mood_edition, container, false)
     }
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -55,7 +57,15 @@ class MoodEditionFragment : Fragment() {
         moodsList.adapter = allMoodsAdaper
 
         view.findViewById<Button>(R.id.addButton).setOnClickListener {
-            findNavController().navigate(R.id.AddMoodFragment)
+            val bundle = Bundle()
+            bundle.putInt("ARG_Index", -1)
+            findNavController().navigate(R.id.AddMoodFragment, bundle)
+        }
+
+        view.findViewById<Button>(R.id.editButton).setOnClickListener {
+            val bundle = Bundle()
+            bundle.putInt("ARG_Index", allMoodsAdaper.selectedPostion)
+            findNavController().navigate(R.id.AddMoodFragment, bundle)
         }
 
         view.findViewById<Button>(R.id.deleteButton).setOnClickListener {
