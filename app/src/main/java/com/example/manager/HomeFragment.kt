@@ -8,11 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.ListView
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.example.manager.handlingClasses.EntriesControl
 import com.example.manager.handlingClasses.FileOperation
 import com.example.manager.handlingClasses.SingleEntry
 import com.example.manager.handlingClasses.SingleMood
@@ -49,17 +51,6 @@ class HomeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
-
-    fun showEntries(view: View, allEntries: List<SingleEntry>) {
-        val entriesLayout = view.findViewById<LinearLayout>(R.id.EntriesLayout)
-        entriesLayout.removeAllViews()
-        for (entry in allEntries) {
-            val textView = TextView(context).apply {
-                text = entry.getEntryData()
-            }
-            entriesLayout.addView(textView)
-        }
-    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -67,21 +58,8 @@ class HomeFragment : Fragment() {
 
         fo.saveSingleEntry(Calendar.getInstance().time, SingleMood(1, "git"))
 
-        context?.openFileOutput("DaysData", Context.MODE_PRIVATE).use {
-            it?.write("test".toByteArray())
-        }
-
-        var Text: String = ""
-
-        context?.openFileInput("DaysData")?.bufferedReader()?.use {
-            Text = it?.readText().toString()
-        }
-
-        showEntries(view, fo.getAllEntries())
-
-        view.findViewById<Button>(R.id.addEntry).setOnClickListener {
-            findNavController().navigate(R.id.action_HomeFragment_to_AddEntityFragment)
-        }
+        val list = view.findViewById<ListView>(R.id.EntriesListView)
+        list.adapter = EntriesControl(view.context, fo.getAllEntries())
     }
 
     companion object {

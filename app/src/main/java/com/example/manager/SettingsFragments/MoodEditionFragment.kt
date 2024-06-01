@@ -56,14 +56,14 @@ class MoodEditionFragment : Fragment() {
         val allMoodsAdaper = MoodsSelectList(view.context, am.moods)
         moodsList.adapter = allMoodsAdaper
 
+        val bundle = Bundle()
+
         view.findViewById<Button>(R.id.addButton).setOnClickListener {
-            val bundle = Bundle()
             bundle.putInt("ARG_Index", -1)
             findNavController().navigate(R.id.AddMoodFragment, bundle)
         }
 
         view.findViewById<Button>(R.id.editButton).setOnClickListener {
-            val bundle = Bundle()
             bundle.putInt("ARG_Index", allMoodsAdaper.selectedPostion)
             findNavController().navigate(R.id.AddMoodFragment, bundle)
         }
