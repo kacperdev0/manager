@@ -53,11 +53,22 @@ class AllMoods(val dir: String, val context: Context) {
         saveData()
     }
 
+    fun deleteMood(index: Int) {
+        if (index != -1) {
+            moods.removeAt(index)
+            saveData()
+        }
+    }
+
     fun arrayOfMoods(): Array<String> {
         return moods.map{it.name}.toTypedArray()
     }
 
     fun nextId(): Int {
+        if (moods.isEmpty()) {
+            return 1
+        }
+
         return moods.last().id + 1
     }
 }

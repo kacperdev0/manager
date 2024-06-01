@@ -58,6 +58,11 @@ class MoodEditionFragment : Fragment() {
             findNavController().navigate(R.id.AddMoodFragment)
         }
 
+        view.findViewById<Button>(R.id.deleteButton).setOnClickListener {
+            am.deleteMood(allMoodsAdaper.selectedPostion)
+            findNavController().navigate(R.id.MoodEditionFragment)
+        }
+
     }
 
     companion object {

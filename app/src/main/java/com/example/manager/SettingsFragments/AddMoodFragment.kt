@@ -45,7 +45,6 @@ class AddMoodFragment : Fragment() {
             findNavController().navigate(R.id.MoodEditionFragment)
         }
 
-        TODO("Handling wrong values in input")
         view.findViewById<Button>(R.id.commit_button).setOnClickListener {
             val name = view.findViewById<TextInputEditText>(R.id.mood_name_input).text.toString()
             val vibe = view.findViewById<SeekBar>(R.id.vibe_seekbar).progress
