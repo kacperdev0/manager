@@ -1,22 +1,13 @@
 package com.example.manager
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.ListView
-import android.widget.ScrollView
-import android.widget.TextView
-import androidx.core.os.bundleOf
-import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
-import com.example.manager.handlingClasses.EntriesControl
+import com.example.manager.handlingClasses.EntitiesSelectList
 import com.example.manager.handlingClasses.FileOperation
-import com.example.manager.handlingClasses.SingleEntry
 import com.example.manager.handlingClasses.SingleMood
 import java.util.Calendar
 
@@ -59,7 +50,7 @@ class HomeFragment : Fragment() {
         fo.saveSingleEntry(Calendar.getInstance().time, SingleMood(1, "git"))
 
         val list = view.findViewById<ListView>(R.id.EntriesListView)
-        list.adapter = EntriesControl(view.context, fo.getAllEntries())
+        list.adapter = EntitiesSelectList(view.context, fo.getAllEntries())
     }
 
     companion object {

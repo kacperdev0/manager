@@ -9,10 +9,27 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.example.manager.R
+import java.time.LocalDate
+import java.time.ZoneId
+import java.util.Calendar
+import java.util.Date
 
-class EntriesControl(context: Context, data: List<SingleEntry>) :
+class EntitiesSelectList(context: Context, data: List<SingleEntry>) :
     ArrayAdapter<SingleEntry>(context, 0, data) {
         var selectedPostion = -1
+
+    fun parseDate(date: Date): String {
+        val calendar = Calendar.getInstance()
+        calendar.time = date
+
+        val year = String.format("%02d", calendar.get(Calendar.YEAR))
+        val month = String.format("%02d", calendar.get(Calendar.MONTH) + 1)
+        val day = String.format("%02d", calendar.get(Calendar.DAY_OF_MONTH))
+        val hour = calendar.get(Calendar.HOUR_OF_DAY).toString()
+        val minute = String.format("%02d",calendar.get(Calendar.MINUTE))
+
+        return year + "-" + month + "-" + day + "   " + hour + ":" + minute
+    }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.entry_item, parent, false)
@@ -37,8 +54,10 @@ class EntriesControl(context: Context, data: List<SingleEntry>) :
         }
 
         moodName.text = data?.mood?.name
-        date.text = data?.date.toString()
 
+        if (data != null) {
+            date.text = parseDate(data.date).toString()
+        }
         return view
     }
 }
