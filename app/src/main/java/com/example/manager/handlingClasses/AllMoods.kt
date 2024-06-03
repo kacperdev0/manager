@@ -69,6 +69,10 @@ class AllMoods(val dir: String, val context: Context) {
         return moods.map{it.name}.toTypedArray()
     }
 
+    fun arrayOfSingleMoods(): List<SingleMood> {
+        return moods.toList()
+    }
+
     fun getSinlgeMood(index: Int): SingleMood {
         return moods[index]
     }

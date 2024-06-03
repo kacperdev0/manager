@@ -10,6 +10,8 @@ import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.manager.handlingClasses.AllMoods
+import com.example.manager.handlingClasses.FileOperation
+import java.util.Calendar
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,6 +50,10 @@ class AddEntityFragment : Fragment() {
         val allMoods = AllMoods("MoodsData", view.context)
         allMoods.loadData()
 
+        val fo = FileOperation("EntriesData", view.context)
+        fo.loadData()
+
+
         val adapter: ArrayAdapter<Any?> = ArrayAdapter<Any?>(requireContext(), android.R.layout.simple_spinner_item,
             allMoods.arrayOfMoods()
         )
@@ -56,6 +62,13 @@ class AddEntityFragment : Fragment() {
         spinner.setAdapter(adapter)
 
         view.findViewById<Button>(R.id.cancel_button).setOnClickListener {
+            findNavController().navigate(R.id.HomeFragment)
+        }
+
+        val moodsArray = allMoods.arrayOfSingleMoods()
+
+        view.findViewById<Button>(R.id.commit_button).setOnClickListener {
+            fo.addSingleEntry(Calendar.getInstance().time.toString(), moodsArray[spinner.selectedItemPosition])
             findNavController().navigate(R.id.HomeFragment)
         }
 

@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ListView
+import androidx.navigation.fragment.findNavController
 import com.example.manager.handlingClasses.EntitiesSelectList
 import com.example.manager.handlingClasses.FileOperation
 import com.example.manager.handlingClasses.SingleMood
@@ -45,12 +47,15 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var fo = FileOperation("EntriesData")
-
-        fo.saveSingleEntry(Calendar.getInstance().time, SingleMood(1, "git"))
+        var fo = FileOperation("EntriesData", view.context)
+        fo.loadData()
 
         val list = view.findViewById<ListView>(R.id.EntriesListView)
         list.adapter = EntitiesSelectList(view.context, fo.getAllEntries())
+
+        view.findViewById<Button>(R.id.addButton).setOnClickListener {
+            findNavController().navigate(R.id.AddEntityFragment)
+        }
     }
 
     companion object {

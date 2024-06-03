@@ -1,8 +1,11 @@
 package com.example.manager.handlingClasses
 
+import kotlinx.serialization.Serializable
 import java.util.Date
 
-class SingleEntry(val date: java.util.Date, val mood: SingleMood) {
+
+@Serializable
+class SingleEntry(val date: String, val mood: SingleMood) {
     fun printEntryData() {
         println(date.toString() + mood.toString())
     }
