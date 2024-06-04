@@ -15,6 +15,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+
+
                 <ListView
                     android:id="@+id/moodsList"
                     android:layout_width="407dp"
@@ -27,6 +29,11 @@
                     android:layout_marginTop="1dp"
                     android:orientation="horizontal">
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
                         <Button
                             android:id="@+id/addButton"
                             android:layout_width="wrap_content"
@@ -34,6 +41,11 @@
                             android:layout_weight="1"
                             android:backgroundTint="@color/colorPrimary"
                             android:text="Add" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
 
                         <Button
                             android:id="@+id/deleteButton"
@@ -43,6 +55,11 @@
                             android:backgroundTint="@color/colorPrimary"
                             android:text="Delete" />
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
                         <Button
                             android:id="@+id/editButton"
                             android:layout_width="wrap_content"
@@ -50,6 +67,10 @@
                             android:layout_weight="1"
                             android:backgroundTint="@color/colorPrimary"
                             android:text="Edit" />
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
 
                 </LinearLayout>
         </LinearLayout>

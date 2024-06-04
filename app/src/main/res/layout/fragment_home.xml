@@ -11,8 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:dividerPadding="0dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/addButton"
@@ -22,6 +28,11 @@
             android:backgroundTint="@color/colorPrimary"
             android:text="Add" />
 
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
         <Button
             android:id="@+id/deleteButton"
             android:layout_width="wrap_content"
@@ -30,6 +41,11 @@
             android:backgroundTint="@color/colorPrimary"
             android:text="Delete" />
 
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
         <Button
             android:id="@+id/editButton"
             android:layout_width="wrap_content"
@@ -37,6 +53,11 @@
             android:layout_weight="1"
             android:backgroundTint="@color/colorPrimary"
             android:text="Edit" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
     </LinearLayout>
 
