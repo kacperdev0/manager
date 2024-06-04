@@ -40,7 +40,14 @@ class EntitiesSelectList(context: Context, data: List<SingleEntry>) :
             date.setTextColor(Color.BLACK)
         }
 
-        moodName.text = data?.mood?.name
+        val am = AllMoods("MoodsData", context)
+        am.loadData()
+        val moods_list = am.arrayOfSingleMoods()
+
+        println(moods_list)
+        println(data?.mood_id)
+        val mood = moods_list.find { it.id == data?.mood_id }
+        moodName.text = mood?.name
 
         if (data != null) {
             date.text = data.date

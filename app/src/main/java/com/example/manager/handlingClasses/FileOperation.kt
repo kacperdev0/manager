@@ -31,8 +31,8 @@ class FileOperation(val dir: String, val context: Context) {
             e.printStackTrace()
         }
     }
-    fun addSingleEntry(data: String, mood: SingleMood) {
-        SingleEntries.add(SingleEntry(data, mood))
+    fun addSingleEntry(data: String, mood_id: Int) {
+        SingleEntries.add(SingleEntry(data, mood_id))
         saveData()
     }
     fun getAllEntries(): List<SingleEntry> {

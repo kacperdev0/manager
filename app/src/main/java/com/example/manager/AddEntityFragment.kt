@@ -68,7 +68,7 @@ class AddEntityFragment : Fragment() {
         val moodsArray = allMoods.arrayOfSingleMoods()
 
         view.findViewById<Button>(R.id.commit_button).setOnClickListener {
-            fo.addSingleEntry(Calendar.getInstance().time.toString(), moodsArray[spinner.selectedItemPosition])
+            fo.addSingleEntry(Calendar.getInstance().time.toString(), moodsArray[spinner.selectedItemPosition].id)
             findNavController().navigate(R.id.HomeFragment)
         }
 
