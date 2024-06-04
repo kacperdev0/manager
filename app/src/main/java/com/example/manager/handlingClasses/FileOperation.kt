@@ -35,6 +35,12 @@ class FileOperation(val dir: String, val context: Context) {
         SingleEntries.add(SingleEntry(data, mood_id))
         saveData()
     }
+    fun deleteSingleEntry(index: Int) {
+        if (index == -1) { return }
+
+        SingleEntries.removeAt(index)
+        saveData()
+    }
     fun getAllEntries(): List<SingleEntry> {
         return SingleEntries
     }

@@ -50,11 +50,16 @@ class HomeFragment : Fragment() {
         var fo = FileOperation("EntriesData", view.context)
         fo.loadData()
 
+        val adapter = EntitiesSelectList(view.context, fo.getAllEntries())
         val list = view.findViewById<ListView>(R.id.EntriesListView)
-        list.adapter = EntitiesSelectList(view.context, fo.getAllEntries())
-
+        list.adapter = adapter
         view.findViewById<Button>(R.id.addButton).setOnClickListener {
             findNavController().navigate(R.id.AddEntityFragment)
+        }
+
+        view.findViewById<Button>(R.id.deleteButton).setOnClickListener {
+            fo.deleteSingleEntry(adapter.selectedPostion)
+            findNavController().navigate(R.id.HomeFragment)
         }
     }
 
