@@ -44,11 +44,16 @@ class AddMoodFragment : Fragment() {
         val am = AllMoods("MoodsData", view.context)
         am.loadData()
 
+        val id: Int
+
         val indexToEdit = arguments?.getInt("ARG_Index") ?: -1
         if (indexToEdit != -1) {
             val moodToEdit: SingleMood = am.getSinlgeMood(indexToEdit)
             nameInput.setText(moodToEdit.name)
             vibeSlider.progress = moodToEdit.vibe
+            id = moodToEdit.id
+        } else {
+            id = am.nextId()
         }
 
         view.findViewById<Button>(R.id.cancel_button).setOnClickListener {
@@ -58,7 +63,7 @@ class AddMoodFragment : Fragment() {
         view.findViewById<Button>(R.id.commit_button).setOnClickListener {
             val name = nameInput.text.toString()
             val vibe = vibeSlider.progress
-            am.addMood(SingleMood(am.nextId(), name, vibe), indexToEdit)
+            am.addMood(SingleMood(id, name, vibe), indexToEdit)
 
             findNavController().navigate(R.id.SettingsFragment)
         }
