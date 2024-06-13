@@ -1,5 +1,6 @@
 package com.example.manager
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.manager.handlingClasses.AllMoods
@@ -47,12 +49,31 @@ class AddEntityFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val spinner = view.findViewById<Spinner>(R.id.moodSpinner)
+        val selectDate_Button = view.findViewById<Button>(R.id.selectDateButton)
+        val datePreview_TextView = view.findViewById<TextView>(R.id.selectedDate)
+        val cancel_Button = view.findViewById<Button>(R.id.cancel_button)
+        val commit_Button = view.findViewById<Button>(R.id.commit_button)
+
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        var datePickerDiolog = DatePickerDialog(
+            view.context,
+            { _, selectedYear, selectedMonth, selectedDay ->
+                datePreview_TextView.text = formatSelectedDate(selectedYear, selectedMonth, selectedDay)
+            },
+            year, month, day
+        )
+
         val allMoods = AllMoods("MoodsData", view.context)
         allMoods.loadData()
 
         val fo = FileOperation("EntriesData", view.context)
         fo.loadData()
 
+        val moodsArray = allMoods.arrayOfSingleMoods()
 
         val adapter: ArrayAdapter<Any?> = ArrayAdapter<Any?>(requireContext(), android.R.layout.simple_spinner_item,
             allMoods.arrayOfMoods()
@@ -61,18 +82,35 @@ class AddEntityFragment : Fragment() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.setAdapter(adapter)
 
-        view.findViewById<Button>(R.id.cancel_button).setOnClickListener {
+
+        selectDate_Button.setOnClickListener {
+            datePickerDiolog.show()
+            datePickerDiolog.datePicker
+        }
+
+        cancel_Button.setOnClickListener {
             findNavController().navigate(R.id.HomeFragment)
         }
 
-        val moodsArray = allMoods.arrayOfSingleMoods()
+        commit_Button.setOnClickListener {
+            fo.addSingleEntry(
+                datePreview_TextView.text.toString(),
+                moodsArray[spinner.selectedItemPosition].id
+            )
 
-        view.findViewById<Button>(R.id.commit_button).setOnClickListener {
-            fo.addSingleEntry(Calendar.getInstance().time.toString(), moodsArray[spinner.selectedItemPosition].id)
             findNavController().navigate(R.id.HomeFragment)
         }
 
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun formatSelectedDate(year: Int, month: Int, dayOfMonth: Int): String {
+
+        val year = year.toString()
+        val month = String.format("%02d", month)
+        val day = String.format("%02d", dayOfMonth)
+
+        return day + "-" + month + "-" + year
     }
 
     companion object {
